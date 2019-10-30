@@ -62,10 +62,6 @@ public:
 
    void invert();
 
-   void rotate(int k);
-
-
-
 
 private:
     Node<T>* head_ptr_; // Pointer to first node in the chain;
