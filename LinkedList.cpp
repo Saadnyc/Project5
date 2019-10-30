@@ -205,8 +205,8 @@ T LinkedList<T>::getEntry(int position) const
 
 template<class T>
 void LinkedList<T>::invert() {
-  if (head_ptr == NULL || head_ptr->next == NULL) 
-        return head_ptr;
+  if (head_ptr_ == NULL || head_ptr_->next == NULL) 
+        return head_ptr_;
 }
 
 template<class T>
