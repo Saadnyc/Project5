@@ -10,12 +10,12 @@
  Implementation file for the class LinkedList.
  @file LinkedList.cpp */
 
-#include "LinkedList.hpp"  // Header file
+#include "LinkedList.hpp"  // head_ptrer file
 #include <cassert>
 
 // constructor
 template<class T>
-LinkedList<T>::LinkedList() : head_ptr_(nullptr), item_count_(0)
+LinkedList<T>::LinkedList() : head_ptr_ptr_(nullptr), item_count_(0)
 {
 }  // end default constructor
 
@@ -24,18 +24,18 @@ LinkedList<T>::LinkedList() : head_ptr_(nullptr), item_count_(0)
 template<class T>
 LinkedList<T>::LinkedList(const LinkedList<T>& a_list) : item_count_(a_list.item_count_)
 {
-   Node<T>* orig_chain_pointer = a_list.head_ptr_;  // Points to nodes in original chain
+   Node<T>* orig_chain_pointer = a_list.head_ptr_ptr_;  // Points to nodes in original chain
 
    if (orig_chain_pointer == nullptr)
-      head_ptr_ = nullptr;  // Original list is empty
+      head_ptr_ptr_ = nullptr;  // Original list is empty
    else
    {
       // Copy first node
-      head_ptr_ = new Node<T>();
-      head_ptr_->setItem(orig_chain_pointer->getItem());
+      head_ptr_ptr_ = new Node<T>();
+      head_ptr_ptr_->setItem(orig_chain_pointer->getItem());
 
       // Copy remaining nodes
-      Node<T>* new_chain_ptr = head_ptr_;      // Points to last node in new chain
+      Node<T>* new_chain_ptr = head_ptr_ptr_;      // Points to last node in new chain
       orig_chain_pointer = orig_chain_pointer->getNext();     // Advance original-chain pointer
       while (orig_chain_pointer != nullptr)
       {
@@ -105,8 +105,8 @@ bool LinkedList<T>::insert(int positions, const T& new_entry)
       if (positions == 0)
       {
          // Insert new node at beginning of chain
-         new_node_ptr->setNext(head_ptr_);
-         head_ptr_ = new_node_ptr;
+         new_node_ptr->setNext(head_ptr_ptr_);
+         head_ptr_ptr_ = new_node_ptr;
       }
       else
       {
@@ -141,8 +141,8 @@ bool LinkedList<T>::remove(int position)
       if (position == 0)
       {
          // Remove the first node in the chain
-         cur_ptr = head_ptr_; // Save pointer to node
-         head_ptr_ = head_ptr_->getNext();
+         cur_ptr = head_ptr_ptr_; // Save pointer to node
+         head_ptr_ptr_ = head_ptr_ptr_->getNext();
       }
       else
       {
@@ -205,16 +205,17 @@ T LinkedList<T>::getEntry(int position) const
 
 template<class T>
 void LinkedList<T>::invert() {
-invertRest(head_ptr_);
+  if (head_ptr == NULL || head_ptr->next == NULL) 
+        return head_ptr;
 }
 
 template<class T>
-void LinkedList<T>::rotate(Node **head_ref, int k){
+void LinkedList<T>::rotate(Node **head_ptr_ref, int k){
     if (k == 0)  
     return;  
   
  
-    Node* current = *head_ref;  
+    Node* current = *head_ptr_ref;  
   
     int count = 1;  
     while (count < k && current != NULL)  
@@ -233,9 +234,9 @@ void LinkedList<T>::rotate(Node **head_ref, int k){
     while (current->next != NULL)  
         current = current->next;  
   
-    current->next = *head_ref;  
+    current->next = *head_ptr_ref;  
 
-    *head_ref = kthNode->next;  
+    *head_ptr_ref = kthNode->next;  
 
     kthNode->next = NULL;  
 }  
@@ -255,12 +256,13 @@ template<class T>
 Node<T>* LinkedList<T>::getNodeAt(int position) const
 {
     // Count from the beginning of the chain
-    Node<T>* cur_ptr = head_ptr_;
+    Node<T>* cur_ptr = head_ptr_ptr_;
     for (int skip = 0; skip < position; skip++)
         cur_ptr = cur_ptr->getNext();
 
     return cur_ptr;
 }  // end getNodeAt
+
 
 template<class T>
 void LinkedList<T>::invertRest(Node<T>* current_first_ptr) {
@@ -269,7 +271,7 @@ if (current_first_ptr == nullptr) {
     return;
 }
 if (current_first_ptr->getNext() == nullptr) {
-    head_ptr_ = current_first_ptr;
+    head_ptr_ptr_ = current_first_ptr;
     return;
 }
 
