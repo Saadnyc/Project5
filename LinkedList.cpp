@@ -203,6 +203,42 @@ T LinkedList<T>::getEntry(int position) const
     }  // end if
 }  // end getEntry
 
+template<class T>
+void LinkedList<T>::invert() {
+invertRest(head_ptr_);
+}
+
+template<class T>
+void LinkedList<T>::rotate(Node **head_ref, int k){
+    if (k == 0)  
+    return;  
+  
+ 
+    Node* current = *head_ref;  
+  
+    int count = 1;  
+    while (count < k && current != NULL)  
+    {  
+        current = current->next;  
+        count++;  
+    }  
+  
+ 
+    if (current == NULL)  
+        return;  
+  
+
+    Node *kthNode = current;  
+
+    while (current->next != NULL)  
+        current = current->next;  
+  
+    current->next = *head_ref;  
+
+    *head_ref = kthNode->next;  
+
+    kthNode->next = NULL;  
+}  
 
 
 
@@ -226,7 +262,23 @@ Node<T>* LinkedList<T>::getNodeAt(int position) const
     return cur_ptr;
 }  // end getNodeAt
 
+template<class T>
+void LinkedList<T>::invertRest(Node<T>* current_first_ptr) {
 
+if (current_first_ptr == nullptr) {
+    return;
+}
+if (current_first_ptr->getNext() == nullptr) {
+    head_ptr_ = current_first_ptr;
+    return;
+}
+
+invertRest (current_first_ptr -> getNext());
+Node <T>* Prev = current_first_ptr -> getNext();
+Prev->setNext(current_first_ptr);
+current_first_ptr->setNext(nullptr);
+}
 
 
 //  End of implementation file.
+

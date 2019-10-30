@@ -60,6 +60,9 @@ public:
             throws  PrecondViolatedExcep */
    T getEntry(int position) const;
 
+   void invert();
+
+   void rotate(int k);
 
 
 
@@ -78,9 +81,12 @@ private:
     // @return  A pointer to the node at the given position or nullptr if position is >= item_count_
     Node<T>* getNodeAt(int position) const;
 
+    void invertRest(Node<T>* current_first_ptr);
+
 
 
 }; // end LinkedList
 
 #include "LinkedList.cpp"
 #endif
+
