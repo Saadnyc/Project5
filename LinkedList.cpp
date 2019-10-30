@@ -163,8 +163,39 @@ T LinkedList<T>::getEntry(int position) const
 //      the item previously at position âŒŠitem_count/2âŒ‹ is at position âŒˆitem_count_/2âŒ‰
 template<class T>
 void LinkedList<T>::invert() {
-invertRest(head_ptr_);
+  invertRest(head_ptr_);
 }
+
+template<class T>
+void LinkedList<T>::rotate(Node **head_ptr, int k){
+
+    if (k == 0)  
+    return;  
+  
+    Node* cur_ptr = *head_ptr;  
+
+    int count = 1;  
+    while (count < k && cur_ptr != NULL)  
+    {  
+        cur_ptr = cur_ptr->next;  
+        count++;  
+    }  
+
+    if (cur_ptr == NULL)  
+        return;  
+
+    Node *kthNode = cur_ptr;  
+
+    while (cur_ptr->next != NULL)  
+        cur_ptr = cur_ptr->next;  
+
+    cur_ptr->next = *head_ptr;  
+ 
+    *head_ptr = kthNode->next;  
+
+    kthNode->next = NULL;  
+}
+
 
 /************* PRIVATE ************/
 
@@ -183,20 +214,20 @@ Node<T>* LinkedList<T>::getNodeAt(int position) const
 } // end getNodeAt
 
 template<class T>
-void LinkedList<T>::invertRest(Node<T>* current_first_ptr) {
+void LinkedList<T>::invertRest(Node<T>* cur_ptr) {
 
-if (current_first_ptr == nullptr) {
+if (cur_ptr == nullptr) {
     return;
 }
-if (current_first_ptr->getNext() == nullptr) {
-    head_ptr_ = current_first_ptr;
+if (cur_ptr->getNext() == nullptr) {
+    head_ptr_ = cur_ptr;
     return;
 }
 
-invertRest (current_first_ptr -> getNext());
-Node <T>* Prev = current_first_ptr -> getNext();
-Prev->setNext(current_first_ptr);
-current_first_ptr->setNext(nullptr);
+invertRest (cur_ptr -> getNext());
+Node <T>* Prev = cur_ptr -> getNext();
+Prev->setNext(cur_ptr);
+cur_ptr->setNext(nullptr);
 }
 
 // End of implementation file.
