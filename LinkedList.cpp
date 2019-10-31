@@ -238,10 +238,10 @@ template<class T>
 void LinkedList<T>::invertRest(Node<T>* current_first_ptr){
 //Reursive functions calls itself inside it
     if(current_first_ptr == NULL) {
-         return NULL;
+         return;
     }
     if(current_first_ptr->getNext == NULL){
-         return current_first_ptr;
+         return;
     }
    invertRest(current_first_ptr->getNext);
    current_first_ptr->getNext->getNext = current_first_ptr;
