@@ -239,14 +239,11 @@ void LinkedList<T>::invertRest(Node<T>* current_first_ptr){
 //Reursive functions calls itself inside it
   if (head_ptr_ == NULL || head_ptr_->getNext == NULL) 
             return head_ptr_; 
-  
-        /* reverse the rest list and put  
-          the first element at the end */
+
         Node<T>* rest = invertRest(head_ptr_->getNext); 
         head_ptr_->getNext->getNext = head_ptr_; 
   
         head_ptr_->getNext = NULL; 
-  
+        invertRest(current_first_ptr);
         return rest; 
-    } 
 } // End of implementation file.
