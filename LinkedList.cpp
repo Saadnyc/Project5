@@ -237,18 +237,16 @@ Node<T>* LinkedList<T>::getNodeAt(int position) const
 template<class T>
 void LinkedList<T>::invertRest(Node<T>* current_first_ptr){
 //Reursive functions calls itself inside it
-  if(current_first_ptr == nullptr)
-      return nullptr;
-
-  if(current_first_ptr->getNext == nullptr)
-      return head_ptr_;
-
-    Node *firstElement = current_first_ptr;
-    Node *secondElement = firstElement->getNext;
-    head = firstElement->getNext;
-    firstElement->getNext = nullptr; //unlink first node
-    Node *remainingList = invertRest(Node<T>* current_first_ptr);
-    secondElement->getNext = firstElement;
-    return remainingList; // End of implementation file.
-}
-
+  if (head_ptr_ == NULL || head_ptr_->getNext == NULL) 
+            return head_ptr_; 
+  
+        /* reverse the rest list and put  
+          the first element at the end */
+        Node* rest = invertRest(head_ptr_->getNext); 
+        head_ptr_->getNext->getNext = head; 
+  
+        head_ptr_->getNext = NULL; 
+  
+        return rest; 
+    } 
+} // End of implementation file.
