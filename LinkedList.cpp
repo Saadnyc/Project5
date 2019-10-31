@@ -243,9 +243,8 @@ void LinkedList<T>::invertRest(Node<T>* current_first_ptr){
     if(current_first_ptr->getNext == NULL){
          return current_first_ptr;
     }
-   Node<T>* rest = invertRest(current_first_ptr->getNext);
+   invertRest(current_first_ptr->getNext);
    current_first_ptr->getNext->getNext = current_first_ptr;
    current_first_ptr->getNext = NULL;
-   return rest; 
-}
-} // End of implementation file.
+   return invertRest(current_first_ptr);
+}  // End of implementation file.
