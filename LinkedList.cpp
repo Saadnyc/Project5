@@ -209,7 +209,6 @@ void LinkedList<T>::invert() {
 }
 template<class T>
 void LinkedList<T>::rotate(int k){
-  
   rotate(3);
 }
 
@@ -237,14 +236,14 @@ Node<T>* LinkedList<T>::getNodeAt(int position) const
 template<class T>
 void LinkedList<T>::invertRest(Node<T>* current_first_ptr){
 //Reursive functions calls itself inside it
-    if(current_first_ptr == NULL) {
-         return;
+    if(current_first_ptr == null){
+      return;
     }
-    if(current_first_ptr->getNext == NULL){
-         return;
+    if(current_first_ptr->getNext() == null){
+      this->head_ptr_ = current_first_ptr;
+      return;
     }
-   invertRest(current_first_ptr->getNext);
-   current_first_ptr->getNext->getNext = current_first_ptr;
-   current_first_ptr->getNext = NULL;
-   return invertRest(current_first_ptr);
-}  // End of implementation file.
+    invertRest(current_first_ptr->getNext());
+    current_first_ptr->getNext()->setNext(current_first_ptr);
+    current_first_setNext(null);
+}
