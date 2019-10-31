@@ -267,12 +267,11 @@ void LinkedList<T>::invertRest(Node<T>* current_first_ptr){
     return;
 }
   if (current_first_ptr->getNext() == nullptr) {
-    head_ptr_ = current_first_ptr;
+    this.head_ptr_ = current_first_ptr;
     return;
 }
 
-invertRest (current_first_ptr -> getNext());
-Node <T>* Prev = current_first_ptr -> getNext();
-Prev->setNext(current_first_ptr);
-current_first_ptr->setNext(nullptr);
+invertRest(current_first_ptr.getNext());
+current_first_ptr.getNext().setNext(current_first_ptr);
+current_first_ptr.setNext(null);
 } // End of implementation file.
