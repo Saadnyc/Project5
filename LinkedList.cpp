@@ -242,8 +242,8 @@ void LinkedList<T>::invertRest(Node<T>* current_first_ptr){
   
         /* reverse the rest list and put  
           the first element at the end */
-        Node* rest = invertRest(head_ptr_->getNext); 
-        head_ptr_->getNext->getNext = head; 
+        Node<T>* rest = invertRest(head_ptr_->getNext); 
+        head_ptr_->getNext->getNext = head_ptr_; 
   
         head_ptr_->getNext = NULL; 
   
