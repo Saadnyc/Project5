@@ -209,33 +209,7 @@ void LinkedList<T>::invert() {
 }
 template<class T>
 void LinkedList<T>::rotate(int k){
-  int item_count_ = 0;
-  cur_ptr = head_ptr_;
-  cur_ptr TmpNode = NULL;
-
-  //Gets position of nth node//
-  for(item_count_ = 1; ((item_count_ < k) && (cur_ptr)); item_count_++; ){
-    cur_ptr = cur_ptr->getNext();
-  }
-  if(cur_ptr == NULL){
-    return;
-  }
-  else{
-    //nth node code
-    TmpNode = cur_ptr;
-  }
-  //Get final node
-  while(cur_ptr->getNext() != NULL){
-    cur_ptr = cur_ptr->getNext();
-  }
-  //Assign first node to last
-  cur_ptr->getNext() = head_ptr_;
-
-  //Last node is first node currently
-  head_ptr_ = TmpNode->getNext();
-
-  //Current->getNext = RotatesTheNode
-  TmpNode->getNext = NULL;
+  
   rotate(3);
 }
 
@@ -263,15 +237,18 @@ Node<T>* LinkedList<T>::getNodeAt(int position) const
 template<class T>
 void LinkedList<T>::invertRest(Node<T>* current_first_ptr){
 //Reursive functions calls itself inside it
-  if (current_first_ptr == nullptr) {
-    return;
-}
-  if (current_first_ptr->getNext() == nullptr) {
-    this.head_ptr_ = current_first_ptr;
-    return;
+  if(current_first_ptr == nullptr)
+      return nullptr;
+
+  if(current_first_ptr->getNext == nullptr)
+      return head_ptr_;
+
+    Node *firstElement = current_first_ptr;
+    Node *secondElement = firstElement->getNext;
+    head = firstElement->getNext;
+    firstElement->getNext = nullptr; //unlink first node
+    Node *remainingList = invertRest(Node<T>* current_first_ptr);
+    secondElement->getNext = firstElement;
+    return remainingList; // End of implementation file.
 }
 
-invertRest(current_first_ptr.getNext());
-current_first_ptr.getNext().setNext(current_first_ptr);
-current_first_ptr.setNext(null);
-} // End of implementation file.
