@@ -209,10 +209,35 @@ void LinkedList<T>::invert() {
 }
 template<class T>
 void LinkedList<T>::rotate(int k){
-    if (k < = 1) // base case
-        return;
-    else    
-        rotate(3);    
+    if(head_ptr_==NULL)
+    return;
+    //one more base case suppose if k=0 no need to rotate;
+    if(k==0 && head_ptr_!=NULL)
+    {
+        //here we reached the pointer from where we have to rotate 
+        //Which is why the previous node's getNext pointer as null 
+        Node<T>* current_ptr =head_ptr_,*temp=head_ptr_;
+        
+        while(current_ptr->getNext!=NULL)
+        current_ptr=current_ptr->getNext;
+        
+        //now current_ptr will be last node so points its getNext to head_ptr_; 
+        current_ptr->getNext=head_ptr_;
+        
+        current_ptr=temp->getNext;  // point to the getNext node 
+        
+        ///now this node will be the head_ptr_ node so make it head_ptr_;
+        head_ptr_=current_ptr;
+        
+        //this is the last node whose getNext pointer we have to set as NULL
+        
+        temp->getNext=NULL;
+        
+        return head_ptr_;
+
+        
+    }
+    rotate(k--,head_ptr_->getNext);    
 }
 
 
