@@ -237,7 +237,7 @@ void LinkedList<T>::rotate(int k){
 
         
     }
-    rotate(k--);    
+    rotate(int k--);    
 }
 
 
