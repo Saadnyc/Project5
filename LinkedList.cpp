@@ -208,7 +208,7 @@ void LinkedList<T>::invert() {
   invertRest(head_ptr_); //Call to the inverRest function to run it in the public class with the use of the private helper
 }
 template<class T>
-void LinkedList<T>::rotate(int k, Node<T>* head_ptr_){
+void LinkedList<T>::rotate(Node<T>* head_ptr_, int k){
     if(head_ptr_==NULL){
     return;
     }
