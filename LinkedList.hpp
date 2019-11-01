@@ -61,7 +61,7 @@ public:
 
    void invert();//Invert Function called in the interface (.hpp)
 
-   void rotate(Node<T>* head_ptr_,int k); //Rotate function declared here
+   void rotate(int k); //Rotate function declared here
 
 
 
