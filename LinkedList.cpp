@@ -218,13 +218,13 @@ void LinkedList<T>::rotate(int k){
         //Which is why the previous node's getNext pointer as null 
         Node<T>* current_ptr =head_ptr_,*temp=head_ptr_;
         
-        while(current_ptr->getNext!=NULL)
-        current_ptr=current_ptr->getNext;
+        while(current_ptr->getNext()!=NULL)
+        current_ptr=current_ptr->getNext();
         
         //now current_ptr will be last node so points its getNext to head_ptr_; 
-        current_ptr->getNext=head_ptr_;
+        current_ptr->getNext()=head_ptr_;
         
-        current_ptr=temp->getNext;  // point to the getNext node 
+        current_ptr=temp->getNext();  // point to the getNext node 
         
         ///now this node will be the head_ptr_ node so make it head_ptr_;
         head_ptr_=current_ptr;
@@ -237,7 +237,7 @@ void LinkedList<T>::rotate(int k){
 
         
     }
-    rotate(head_ptr_->getNext);    
+    rotate(head_ptr_->getNext());    
 }
 
 
