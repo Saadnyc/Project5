@@ -16,8 +16,7 @@
 #include "PrecondViolatedExcep.hpp"
 
 template<class T>
-class LinkedList
-{
+class LinkedList {
 
 public:
    LinkedList(); // constructor
@@ -60,16 +59,17 @@ public:
             throws  PrecondViolatedExcep */
    T getEntry(int position) const;
 
-   void invert();
+   void invert();//Invert Function called in the interface (.hpp)
+
+   void rotate(int k); //Rotate function declared here
+
+
 
 
 private:
     Node<T>* head_ptr_; // Pointer to first node in the chain;
     // (contains the first entry in the list)
     int item_count_;           // Current count of list items
-
-
-
     // Locates a specified node in this linked list.
     // @pre list positions follow traditional indexing from 0 to item_count_ -1
     // @param position the index of the desired node
@@ -77,10 +77,7 @@ private:
     // @return  A pointer to the node at the given position or nullptr if position is >= item_count_
     Node<T>* getNodeAt(int position) const;
 
-    void invertRest(Node<T>* current_first_ptr);
-
-
-
+    void invertRest(Node<T>* current_first_ptr);//Part 2 of the invert function declared here
 }; // end LinkedList
 
 #include "LinkedList.cpp"
