@@ -213,7 +213,7 @@ void LinkedList<T>::rotate(int k){
     return;
     }
     //one more base case suppose if k=0 no need to rotate;
-    if(k<0 && head_ptr_!=NULL){
+    if(k==0 && head_ptr_!=NULL){
         //here we reached the pointer from where we have to rotate 
         //Which is why the previous node's getNext pointer is null 
         Node<T>* cur_ptr =head_ptr_,*temp=head_ptr_;
@@ -222,7 +222,7 @@ void LinkedList<T>::rotate(int k){
         cur_ptr=cur_ptr->getNext();
         
         //now cur_ptr will be last node so points its getNext to head_ptr_; 
-        cur_ptr->getNext()=head_ptr_;
+        cur_ptr->getNext() = head_ptr_;
         
         cur_ptr=temp->getNext();  // points to the getNext node 
         
@@ -236,7 +236,7 @@ void LinkedList<T>::rotate(int k){
         return head_ptr_; //Returns the first node
         
     }
-    rotate(k--);//Recursion that keeps looping the function until the above condition is met
+    rotate(head_ptr_->getNext());//Recursion that keeps looping the function until the above condition is met
 }
 
 
