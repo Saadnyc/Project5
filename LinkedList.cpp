@@ -209,8 +209,9 @@ void LinkedList<T>::invert() {
 }
 template<class T>
 void LinkedList<T>::rotate(int k){
-    if(head_ptr_==NULL)
+    if(head_ptr_==NULL){
     return;
+    }
     //one more base case suppose if k=0 no need to rotate;
     if(k<0 && head_ptr_!=NULL){
         //here we reached the pointer from where we have to rotate 
@@ -233,10 +234,9 @@ void LinkedList<T>::rotate(int k){
         temp->getNext=NULL;
         
         return head_ptr_; //Returns the first node
-
         
     }
-    rotate(k);//Recursion that keeps looping the function until the above condition is met
+    rotate(head_ptr_->getNext());//Recursion that keeps looping the function until the above condition is met
 }
 
 
