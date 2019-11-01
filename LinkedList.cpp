@@ -205,17 +205,17 @@ T LinkedList<T>::getEntry(int position) const
 
 template<class T>
 void LinkedList<T>::invert() {
-  invertRest(head_ptr_);
+  invertRest(head_ptr_); //Call to the inverRest function to run it in the public class with the use of the private helper
 }
 template<class T>
-void LinkedList<T>::rotate(int k, Node<T>*head_ptr_){
-    if(head_ptr_==NULL)
+void LinkedList<T>::rotate(int k){
+    if(head_ptr_==NULL){
     return;
+    }
     //one more base case suppose if k=0 no need to rotate;
-    if(k<0 && head_ptr_!=NULL)
-    {
+    if(k<0 && head_ptr_!=NULL){
         //here we reached the pointer from where we have to rotate 
-        //Which is why the previous node's getNext pointer as null 
+        //Which is why the previous node's getNext pointer is null 
         Node<T>* cur_ptr =head_ptr_,*temp=head_ptr_;
         
         while(cur_ptr->getNext()!=NULL)
@@ -224,20 +224,19 @@ void LinkedList<T>::rotate(int k, Node<T>*head_ptr_){
         //now cur_ptr will be last node so points its getNext to head_ptr_; 
         cur_ptr->getNext()=head_ptr_;
         
-        cur_ptr=temp->getNext();  // point to the getNext node 
+        cur_ptr=temp->getNext();  // points to the getNext node 
         
-        ///now this node will be the head_ptr_ node so make it head_ptr_;
+        ///now this node will be the head_ptr_ node so I made it head_ptr_;
         head_ptr_=cur_ptr;
         
         //this is the last node whose getNext pointer we have to set as NULL
         
         temp->getNext=NULL;
         
-        return head_ptr_;
-
+        return head_ptr_; //Returns the first node
         
     }
-    rotate(k--,head_ptr_->getNext());    
+    rotate(head_ptr_->getNext());//Recursion that keeps looping the function until the above condition is met
 }
 
 
@@ -265,14 +264,14 @@ Node<T>* LinkedList<T>::getNodeAt(int position) const
 template<class T>
 void LinkedList<T>::invertRest(Node<T>* current_first_ptr){
 //Reursive functions calls itself inside it
-    if(current_first_ptr == NULL){
+    if(current_first_ptr == NULL){ //If condition is met, don't output anything
       return;
     }
-    if(current_first_ptr->getNext() == NULL){
-      this->head_ptr_ = current_first_ptr;
+    if(current_first_ptr->getNext() == NULL){ //According to the condition
+      this->head_ptr_ = current_first_ptr;    //setting head_ptr_ equal to the first node
       return;
     }
-    invertRest(current_first_ptr->getNext());
-    current_first_ptr->getNext()->setNext(current_first_ptr);
-    current_first_ptr->setNext(NULL);
+    invertRest(current_first_ptr->getNext()); //Recursion here to keep looping
+    current_first_ptr->getNext()->setNext(current_first_ptr); //call to getNext function which
+    current_first_ptr->setNext(NULL); //keeps running the recursion over and over again until the condition is satisfied
 }
